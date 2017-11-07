@@ -1,0 +1,13 @@
+<div>
+  <div *ngFor="let message of conversation">
+    <span>{{message.from}}</span> | <span>{{message.text}}</span>
+  </div>
+</div>
+
+<input
+  ngModel
+  #message 
+  maxlength="256" 
+  placeholder="Message" 
+  (keyup.enter)="addMessageFromUser(message)" 
+  type="text">
