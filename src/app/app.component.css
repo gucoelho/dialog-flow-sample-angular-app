@@ -1,0 +1,11 @@
+chat {
+    display: block;
+    margin: auto;
+    height: 800px;
+    width: 450px;
+    padding: 15px;
+    background: white;
+    -webkit-box-shadow: 10px 10px 32px -8px rgba(0,0,0,0.53);
+    -moz-box-shadow: 10px 10px 32px -8px rgba(0,0,0,0.53);
+    box-shadow: 10px 10px 32px -8px rgba(0,0,0,0.53);
+}

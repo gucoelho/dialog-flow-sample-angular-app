@@ -1,0 +1,15 @@
+.message {
+    margin: 5px;
+}
+
+.bot {
+    display: flex;
+    justify-content: flex-start;    
+    text-align: left;
+}
+
+.me {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+}

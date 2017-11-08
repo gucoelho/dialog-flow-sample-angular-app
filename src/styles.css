@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+
+body {
+    height: 100%;
+    background: radial-gradient(#428fff 30%, #478dff 30%, #004ac1);
+    font-family: 'Questrial', sans-serif; 
+    text-align: center;
+}
+
+h1 {
+    color: white;
+}

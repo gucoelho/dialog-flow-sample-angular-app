@@ -1,8 +1,17 @@
 <div>
-  <div *ngFor="let message of conversation">
-    <span>{{message.from}}</span> | <span>{{message.text}}</span>
+  <div *ngFor="let message of conversation"
+        [ngClass]="{
+          'bot': message.from == 'Bot',
+          'me':message.from == 'Me',
+          message: true
+        }"
+  >
+    <span>{{message.text}}</span>
   </div>
 </div>
+
+
+<i class="fa fa-keyboard-o" aria-hidden="true"></i>
 
 <input
   ngModel

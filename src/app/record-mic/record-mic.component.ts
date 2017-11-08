@@ -1,3 +1,4 @@
+import { SpeechRecognizerService } from './../services/speech-recognizer.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import RecordRTC from 'recordrtc';
 
@@ -12,8 +13,8 @@ export class RecordMicComponent implements OnInit {
 
   private stream: MediaStream;
   private recordRTC: any;
-  
-  constructor() { }
+
+  constructor(private recognizer: SpeechRecognizerService) { }
 
   ngOnInit() {
   }
@@ -39,12 +40,25 @@ export class RecordMicComponent implements OnInit {
   }
 
   stopRecording() {
+    let recordedBlob: string;
+
     this.recordRTC.stopRecording(function() {
-      let recordedBlob = this.getBlob();
+      recordedBlob = this.getBlob();
       this.getDataURL((dataURL) => {});
     });
     this.isRecording = false;
     this.stream.getAudioTracks().forEach(track => track.stop());
+
+
+    // TODO: TEST SPEECH API
+    // let transcription: string;
+
+
+    // this.recognizer.recognize(btoa(recordedBlob))
+    //  .then( data => console.log(data) )
+    //  .catch( err => console.log(err) );
+
+    // console.log(transcription);
   }
 
   download() {
