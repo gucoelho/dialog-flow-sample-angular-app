@@ -1,0 +1,44 @@
+.input-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+
+.mic {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background:rgb(104, 104, 233);
+    height: 60px;
+    width: 60px;
+    font-size: 40px;
+    color: white;   
+}
+
+.text-input {
+    display: flex;    
+    font-size: 40px;
+    align-items: stretch;
+}
+
+.text-input input {
+    font-size: 18px; 
+}
+
+.transciption {
+    position: absolute;
+    top: -40px;
+    width: 100%;
+    height: 40px;
+    color: grey;
+}
+
+.transciption .done {
+    color: black;    
+}
+

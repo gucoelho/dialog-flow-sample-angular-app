@@ -6,20 +6,24 @@ import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
 import { RecordMicComponent } from './record-mic/record-mic.component';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { WebSpeechApiService } from './services/web-speech-api.service';
+import { VoiceRecognizerComponent } from './voice-recognizer/voice-recognizer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
     MessageComponent,
-    RecordMicComponent
+    RecordMicComponent,
+    VoiceRecognizerComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [
+    WebSpeechApiService,
     SpeechRecognizerService
   ],
   bootstrap: [AppComponent]

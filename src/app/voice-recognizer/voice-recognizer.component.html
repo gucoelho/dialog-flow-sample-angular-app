@@ -1,0 +1,16 @@
+<div class="transciption">
+        {{transcription}}
+</div>
+<div class="input-wrapper">
+    <span class="text-input">
+        <input type="text">
+        <i class="fa fa-keyboard-o" aria-hidden="true"></i>
+    </span>
+    <span class="mic" (click)="toggleRecording()">
+            <i class="fa" [ngClass]=" {
+                'fa-microphone': !isRecording,
+                'fa-stop': isRecording
+            }" aria-hidden="true"></i>
+    </span>    
+</div>
+

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SpeechClient } from '@google-cloud/speech';
-import { Http } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class SpeechRecognizerService {
@@ -8,12 +8,8 @@ export class SpeechRecognizerService {
   private URL = 'https://speech.googleapis.com/v1/speech:recognize';
   private API_KEY: string;
 
-  constructor(private http: Http) {
-    this.API_KEY = ''; // TODO: API KEY TO ENVIRONMENT VAR
-  }
-
-  getURL() {
-    return this.URL + '?key=' + this.API_KEY;
+  constructor(private http: HttpClient) {
+    this.API_KEY = 'AIzaSyCMrctHNjThHvWT0g-iMnTPx__IL21nRTc'; // TODO: API KEY TO ENVIRONMENT VAR
   }
 
   recognize(audio) {
@@ -22,7 +18,7 @@ export class SpeechRecognizerService {
       content: audio,
     };
     const config = {
-      encoding: 'FLAC',
+      encoding: 'LINEAR16',
       sampleRateHertz: 16000,
       languageCode: 'pt-BR',
     };
@@ -30,8 +26,13 @@ export class SpeechRecognizerService {
       audio: audioParam,
       config: config,
     };
+
+    console.log(body);
+
     // TODO: TO OBSERVABLE
-    return this.http.post(this.getURL(), body).toPromise();
+    return this.http.post(this.URL, body, {
+      params: new HttpParams().set('key', this.API_KEY),
+    });
   }
 
 }

@@ -17,18 +17,23 @@ export class ChatComponent implements OnInit {
   }
 
 
-  addMessageFromUser(message) {
+  sendMessage(event: string) {
+    console.log(event);
+    this.addMessageFromUser(event.toString());
+  }
+
+  addMessageFromUser(message: string) {
     this.conversation.push({
       from: 'Me',
-      text: message.value
+      text: message
     });
 
-    client.textRequest(message.value).then((response) => {
+    client.textRequest(message).then((response) => {
       this.conversation.push({
         from: 'Bot',
         text: response.result.fulfillment['speech'] || 'I can\'t seem to figure that out!'
       });
-      message.value = '';
+      message = '';
     });
   }
 

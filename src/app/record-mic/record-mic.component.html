@@ -1,6 +1,7 @@
 <div>
+    {{transcription}}
+    <span ngModel>{{duration}}</span>
     <span *ngIf="isRecording">Recording...</span>
-    <button md-raised-button color="primary" (click)="startRecording()"> Record </button>
-    <button md-raised-button color="primary"(click) ="stopRecording()"> Stop</button>
-    <button md-raised-button color="primary" (click)="download()"> Download</button>
+    <button (click)=record()>Web Api</button>
+    <div class="mic" (click)="toggleRecording()">{{label}}</div>
 </div>

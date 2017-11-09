@@ -1,24 +1,16 @@
-<div>
-  <div *ngFor="let message of conversation"
-        [ngClass]="{
-          'bot': message.from == 'Bot',
-          'me':message.from == 'Me',
-          message: true
-        }"
-  >
-    <span>{{message.text}}</span>
-  </div>
+<div class="chat">
+    <div class="conversation">
+        <message *ngFor="let message of conversation"
+              [ngClass]="{
+                'bot': message.from == 'Bot',
+                'me':message.from == 'Me',
+                message: true
+              }"
+              [message]="message"
+        >
+        </message>
+      </div>
+      <div class="input-data">
+          <voice-recognizer (send)="sendMessage($event)"></voice-recognizer>
+      </div>
 </div>
-
-
-<i class="fa fa-keyboard-o" aria-hidden="true"></i>
-
-<input
-  ngModel
-  #message 
-  maxlength="256" 
-  placeholder="Message" 
-  (keyup.enter)="addMessageFromUser(message)" 
-  type="text">
-
-<record-mic></record-mic>
