@@ -16,25 +16,23 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  sendMessage(event: string) {
-    console.log(event);
-    this.addMessageFromUser(event.toString());
-  }
-
   addMessageFromUser(message: string) {
-    this.conversation.push({
-      from: 'Me',
-      text: message
-    });
-
-    client.textRequest(message).then((response) => {
+    console.log(message);
+    if (message && message.length > 0) {
       this.conversation.push({
-        from: 'Bot',
-        text: response.result.fulfillment['speech'] || 'I can\'t seem to figure that out!'
+        from: 'Me',
+        text: message
       });
-      message = '';
-    });
+
+    client.textRequest(message)
+      .then((response) => {
+          this.conversation.push({
+            from: 'Bot',
+            text: response.result.fulfillment['speech'] || 'I can\'t seem to figure that out!'
+          });
+          message = '';
+      });
+    }
   }
 
 }

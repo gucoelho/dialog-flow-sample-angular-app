@@ -1,16 +1,13 @@
-<div class="transciption">
-        {{transcription}}
-</div>
+<div class="transciption"> {{ transcription }} </div>
 <div class="input-wrapper">
-    <span class="text-input">
-        <input type="text">
-        <i class="fa fa-keyboard-o" aria-hidden="true"></i>
+    <span class="text-input" *ngIf="!isRecording">
+        <input type="text" *ngIf="isKeyboardActivated" (keyup.enter)="sendMessage($event)">
+        <i class="fa fa-keyboard-o" aria-hidden="true" (click)="toggleKeyboard()"></i>
     </span>
+    <span *ngIf="isRecording">Gravando.. {{duration}}</span>
     <span class="mic" (click)="toggleRecording()">
-            <i class="fa" [ngClass]=" {
-                'fa-microphone': !isRecording,
-                'fa-stop': isRecording
+            <i class="fa fa-microphone" [ngClass]=" {
+                'recording': isRecording
             }" aria-hidden="true"></i>
     </span>    
 </div>
-

@@ -1,4 +1,4 @@
-import { Injectable, NgZone} from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 interface IWindow extends Window {
@@ -30,12 +30,8 @@ export class WebSpeechApiService {
                 if (speech.results) {
                     const result = speech.results[speech.resultIndex];
                     const transcript = result[0].transcript;
-
-                    if (result[0].confidence < 0.3) {
-                        console.log(result[0].confidence + ' ' + transcript);
-                    } else {
-                        term = transcript;
-                    }
+                    term = transcript;
+                    console.log(term);
                 }
                 this.zone.run(
                   () => observer.next(term)
@@ -48,7 +44,7 @@ export class WebSpeechApiService {
 
             this.speechRecognition.onspeechend = () => {
                 observer.complete();
-            }
+            };
 
             this.speechRecognition.onend = () => {
                 observer.complete();

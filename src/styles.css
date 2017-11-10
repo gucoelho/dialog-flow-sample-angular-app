@@ -1,12 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css?family=Questrial');
 @import "~font-awesome/css/font-awesome.min.css";
 
 body {
     height: 100%;
     background: radial-gradient(#428fff 30%, #478dff 30%, #004ac1);
-    font-family: 'Questrial', sans-serif; 
+    font-family: 'Opens Sans', sans-serif; 
     text-align: center;
 }
 

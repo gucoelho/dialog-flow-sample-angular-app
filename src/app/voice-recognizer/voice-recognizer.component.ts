@@ -1,3 +1,5 @@
+import { SpeechClient } from '@google-cloud/speech';
+import { Observable } from 'rxjs/Rx';
 import { WebSpeechApiService } from './../services/web-speech-api.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
@@ -11,16 +13,22 @@ export class VoiceRecognizerComponent implements OnInit {
   isRecording: boolean;
   duration: number;
   transcription: string;
+  isKeyboardActivated: boolean;
+  ticks: number;
 
-  @Output() send = new EventEmitter<string>();
+  @Output('send') send = new EventEmitter<string>();
 
   constructor(private service: WebSpeechApiService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   toggleRecording() {
     this.isRecording ? this.stopRecording() : this.startRecording();
+  }
+
+  sendMessage(message) {
+    this.send.emit(message.target.value);
+    message.target.value = '';
   }
 
   startRecording() {
@@ -33,16 +41,19 @@ export class VoiceRecognizerComponent implements OnInit {
   }
 
   stopRecording() {
+    this.completeTranscription();
     this.service.stopRecording();
-    this.isRecording = false;
   }
 
   completeTranscription() {
     console.log('complete');
     this.isRecording = false;
-    if (this.transcription) {
-      this.send.emit(this.transcription);
-    }
+    this.send.emit(this.transcription);
     this.transcription = '';
   }
+
+  toggleKeyboard() {
+    this.isKeyboardActivated = !this.isKeyboardActivated;
+  }
+
 }
